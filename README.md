@@ -94,3 +94,8 @@ Remember that all of unsued code version should not be removed. Instead, these c
 * model: Model file
 * bcolors: All of color codes are here
 * dataset: All of dataset related things will be here.
+
+# How to create enviroment.yaml and requirements.txt
+1. Activate virtual environment
+2. Execute gen_enviroment.sh(or bat)
+3. Execute gen_requirements.sh(or bat)
