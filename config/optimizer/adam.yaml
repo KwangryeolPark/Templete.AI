@@ -1,0 +1,5 @@
+name: adam
+lr: None
+default_lr: 0.001
+weight_decay: None
+default_weight_decay: 0.0
