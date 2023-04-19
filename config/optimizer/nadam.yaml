@@ -1,11 +1,9 @@
-name: adam
-lr: 1e-3
+name: nadam
+lr: 2e-3
 beta_1: 0.9
 beta_2: 0.999
 eps:  1e-08
 weight_decay: 0.0
-amsgrad:  False
-maximize: False
-capturable: False
+momentum_decay: 4e-3
 differentiable: False
 

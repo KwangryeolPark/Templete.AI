@@ -1,0 +1,8 @@
+name: asgd
+lr: 0.01
+lambd:  1e-4
+alpha:  0.75
+t0: 1e6
+weight_decay: 0.0
+maximize: False
+differentiable: False

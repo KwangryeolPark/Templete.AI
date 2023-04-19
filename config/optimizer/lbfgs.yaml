@@ -1,0 +1,8 @@
+name: lbfgs
+lr: 1
+max_iter: 20
+max_eval: null
+tolerance_grad: 1e-07
+tolerance_change: 1e-09
+history_size: 100
+line_search_fn: null

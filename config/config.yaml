@@ -2,10 +2,10 @@ defaults:
   - optimizer:  radam
 
 logger:
-  project:  Deep_Generative_Model_Final_Project
+  project:  test
   save_dir: ./log/
   offline:  False # False if you want to sync log to wandb server.
-  name: DGM_Final_Project
+  name: test
 
 dataset:
   batch_size: 64
@@ -15,6 +15,9 @@ num_workers:  4
 sleep:  0 # This is for delayed execution.
 seed: 7777777
 model:  v1
+
+
+
 max_epochs: 200
 compile_model:  False
 devices:  0

@@ -1,5 +1,7 @@
 name: radam
-lr: None
-default_lr: 0.001
-weight_decay: None
-default_weight_decay: 0.0
+lr: 1e-3
+beta_1: 0.9
+beta_2: 0.999
+eps:  1e-08
+weight_decay: 0.0
+differentiable: False
