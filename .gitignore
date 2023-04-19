@@ -1,5 +1,14 @@
 *.log
 *.pyc
+*.txt
+*.png
+*.jpg
+*.pth
+*.ckpt
 
 outputs/*
+log/*
+logs/*
+.hydra/*
+
 test.py
