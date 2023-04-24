@@ -31,4 +31,3 @@ lookahead.step()
 中文介绍：https://mp.weixin.qq.com/s/3J-28xd0pyToSy8zzKs1RA  
   
   
-![avatar](fig/algorithm.png)
