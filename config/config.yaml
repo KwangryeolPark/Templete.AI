@@ -1,5 +1,6 @@
 defaults:
   - optimizer:  radam
+  - optimizer_assister: null
 
 logger:
   project:  test

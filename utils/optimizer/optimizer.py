@@ -12,6 +12,7 @@ class LitOptimizer(object):
         cfg:DictConfig=None
     ):
         self.cfg = cfg.optimizer
+        self.assister_cfg = cfg.optimizer_assister
     
     def get_optimizer(
         self,
@@ -216,4 +217,23 @@ class LitOptimizer(object):
         else:
             raise ValueError('Unknown optimizer: {}'.format(self.cfg.name))
 
+        if self.assister_cfg != None:
+            if self.assister_cfg.name == 'sam':
+                from .sam.sam import SAM
+                self.optimizer = SAM(
+                    params=params,
+                    base_optimizer=self.optimizer,
+                    rho=self.assister_cfg.rho,
+                    adaptive=self.assister_cfg.adaptive,
+                )
+            elif self.assister_cfg.name == 'lookahead':
+                from .lookahead.lookahead import Lookahead
+                self.optimizer = Lookahead(
+                    params=params,
+                    k=self.assister_cfg.k,
+                    alpha=self.assister_cfg.alpha,
+                )
+            else:
+                raise ValueError('Unknown optimizer assister: {}'.format(self.assister_cfg.name))
+        
         return self.optimizer

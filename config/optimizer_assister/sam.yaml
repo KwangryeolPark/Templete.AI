@@ -1,0 +1,3 @@
+name: sam # Sharpness Aware Minimization
+rho: 0.05 # Rho value for SAM. Paper suggests 0.05 and should be bigger than or equal to 0.
+adaptive: False
