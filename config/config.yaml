@@ -13,6 +13,6 @@ sleep:  0 # This is for delayed execution.
 seed: 7777777
 model:  v1
 
-
+set_float32_matmul_precision:  high # medium or high
 
 compile_model:  False

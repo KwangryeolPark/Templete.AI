@@ -121,6 +121,11 @@ def log_checkpoint(
         bcolors.ENDC
     )
 
+def init_precision(
+    cfg: DictConfig
+):
+    torch.set_float32_matmul_precision(cfg.set_float32_matmul_precision)
+
 def init_random_seed(
     cfg: DictConfig
 ):
@@ -197,25 +202,6 @@ def init_wandb(
         checkpoint_name=get_checkpoint(cfg)
     )
 
-def delayed_mode(
-    cfg: DictConfig
-):
-    assert type(cfg.sleep) == int
-    sleep_time = int(cfg.sleep)
-    if sleep_time != 0:        
-        log.info(
-            bcolors.HEADER +
-            bcolors.OKGREEN + 
-            'Delayed execution: ' + 
-            bcolors.ENDC +
-            bcolors.OKCYAN +
-            f'{sleep_time}(s)' + 
-            bcolors.ENDC +
-            bcolors.ENDC
-        )
-        from time import sleep
-        sleep(sleep_time)
-
 def get_checkpoint(
     cfg: DictConfig
 )->str:
@@ -262,7 +248,6 @@ def get_lightning_model(
         optimizer=LitOptimizer(cfg)
     )
 
-
 def get_dataset(
     cfg: DictConfig
 ):
@@ -288,6 +273,24 @@ def background_color_log(msg, init=False):
         bcolors.ENDC
     )
 
+def delayed_mode(
+    cfg: DictConfig
+):
+    assert type(cfg.sleep) == int
+    sleep_time = int(cfg.sleep)
+    if sleep_time != 0:        
+        log.info(
+            bcolors.HEADER +
+            bcolors.OKGREEN + 
+            'Delayed execution: ' + 
+            bcolors.ENDC +
+            bcolors.OKCYAN +
+            f'{sleep_time}(s)' + 
+            bcolors.ENDC +
+            bcolors.ENDC
+        )
+        from time import sleep
+        sleep(sleep_time)
 
 def init(
     cfg: DictConfig
@@ -297,6 +300,7 @@ def init(
     log_optimizer_config(cfg)
     log_checkpoint(cfg)
     init_random_seed(cfg)
+    init_precision(cfg)
     logger = init_wandb(cfg)
     delayed_mode(cfg)
 
