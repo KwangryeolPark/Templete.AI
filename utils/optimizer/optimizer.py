@@ -1,5 +1,10 @@
+import logging
+import os
+
 from omegaconf import DictConfig
 from torch.optim import Optimizer
+
+log = logging.getLogger(__name__)
 
 class LitOptimizer(object):
     def __init__(
@@ -161,6 +166,53 @@ class LitOptimizer(object):
                 maximize=self.cfg.maximize,
                 differentiable=self.cfg.differentiable,
             )
+            
+        elif self.cfg.name == 'adafactor':
+            from .adafactor import Adafactor
+            self.optimizer = Adafactor(
+                params=params,
+                lr=self.cfg.lr,
+                eps=(self.cfg.eps_1, self.cfg.eps_2),
+                clip_threshold=self.cfg.clip_threshold,
+                decay_rate=self.cfg.decay_rate,
+                beta1=self.cfg.beta_1,
+                weight_decay=self.cfg.weight_decay,
+                scale_parameter=self.cfg.scale_parameter,
+                relative_step=self.cfg.relative_step,
+                warmup_init=self.cfg.warmup_init,
+            )
+        elif self.cfg.name == 'sm3':
+            from .sm3 import SM3
+            self.optimizer = SM3(
+                params=params,
+                lr=self.cfg.lr,
+                momentum=self.cfg.momentum,
+                beta=self.cfg.beta,
+                eps=self.cfg.eps,
+                weight_decay=self.cfg.weight_decay,
+            )
+        elif self.cfg.name == 'adabelief':
+            try:
+                from adabelief_pytorch import AdaBelief
+            except:
+                log.warning(
+                    'AdaBelief is not installed. Try `pip install adabelief-pytorch`.'
+                )
+                os.system('pip install adabelief-pytorch==0.2.0')
+                from adabelief_pytorch import AdaBelief
+            self.optimizer = AdaBelief(
+                params=params,
+                lr=self.cfg.lr,
+                betas=(self.cfg.beta_1, self.cfg.beta_2),
+                eps=self.cfg.eps,
+                weight_decay=self.cfg.weight_decay,
+                amsgrad=self.cfg.amsgrad,
+                weight_decouple=self.cfg.weight_decouple,
+                fixed_decay=self.cfg.fixed_decay,
+                rectify=self.cfg.rectify,
+                degenerated_to_sgd=self.cfg.degenerated_to_sgd,
+                print_change_log=self.cfg.print_change_log,
+            )                
         else:
             raise ValueError('Unknown optimizer: {}'.format(self.cfg.name))
 

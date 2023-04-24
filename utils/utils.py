@@ -81,6 +81,29 @@ def log_optimizer_config(
         bcolors.ENDC +
         bcolors.ENDC
     )
+    if cfg.optimizer.name == 'adafactor':
+        if cfg.optimizer.relative_step:
+            log.info(
+                bcolors.HEADER +
+                bcolors.OKGREEN + 
+                '\t\tmode: ' + 
+                bcolors.ENDC +
+                bcolors.OKCYAN +
+                'relative step mode' +
+                bcolors.ENDC +
+                bcolors.ENDC
+            )
+        else:
+            log.info(
+                bcolors.HEADER +
+                bcolors.OKGREEN + 
+                '\t\tmode: ' + 
+                bcolors.ENDC +
+                bcolors.OKCYAN +
+                'learning rate mode' +
+                bcolors.ENDC +
+                bcolors.ENDC
+            )
 
 def log_checkpoint(
     cfg: DictConfig

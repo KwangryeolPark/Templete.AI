@@ -1,0 +1,24 @@
+name: adafactor
+lr: null
+eps_1: 1e-30
+eps_2: 1e-3
+clip_threshold: 1.0
+decay_rate: -0.8
+beta_1:  null
+weight_decay: 0.0
+scale_parameter:  True
+relative_step:  True
+warmup_init:  True
+
+# According to huggingface, those configuration is good.
+# 1.
+#         scale_parameter=False
+#         relative_step=False
+#         warmup_init=False
+#         lr=1e-3
+
+# 2.    (warnmup_step should be zero)
+#         scale_parameter=True
+#         relative_step=True
+#         warmup_init=True
+#         lr=None
