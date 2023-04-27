@@ -156,6 +156,12 @@ def init_wandb(
     cfg: DictConfig
 )->WandbLogger:
     
+    
+    if cfg.logger.version == None:
+        version = str(now)
+    else:
+        version = cfg.logger.version
+        
     log.info(
         bcolors.HEADER +
         bcolors.OKGREEN + 
@@ -193,13 +199,24 @@ def init_wandb(
         bcolors.ENDC +
         bcolors.ENDC
     )
-
+    log.info(
+        bcolors.HEADER +
+        bcolors.OKGREEN + 
+        '\t\tversion: ' + 
+        bcolors.ENDC +
+        bcolors.OKCYAN +
+        str(version) + 
+        bcolors.ENDC +
+        bcolors.ENDC
+    )
+    
     return WandbLogger(
         name=cfg.logger.name,
         save_dir=os.path.join(DIR_PATH, cfg.logger.save_dir),
         project=cfg.logger.project,
         offline=cfg.logger.offline,
-        checkpoint_name=get_checkpoint(cfg)
+        checkpoint_name=get_checkpoint(cfg),
+        version=version
     )
 
 def get_checkpoint(
@@ -303,6 +320,9 @@ def init(
     init_precision(cfg)
     logger = init_wandb(cfg)
     delayed_mode(cfg)
+
+    if cfg.compile_model:
+        raise ValueError("Compile model is not supported yet.")
 
     return {
         'logger': logger,

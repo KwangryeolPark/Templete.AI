@@ -17,7 +17,7 @@ class LitOptimizer(object):
     def get_optimizer(
         self,
         params
-    ):
+    )->Optimizer:
         if self.cfg.name == 'adadelta':
             from torch.optim import Adadelta
             self.optimizer = Adadelta(

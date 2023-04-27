@@ -7,6 +7,7 @@ logger:
   save_dir: ./log/
   offline:  False # False if you want to sync log to wandb server.
   name: test
+  version:  null
 
 checkpoint_path:  ./ckpt/
 num_workers:  4
@@ -15,5 +16,4 @@ seed: 7777777
 model:  v1
 
 set_float32_matmul_precision:  high # medium or high
-
 compile_model:  False
