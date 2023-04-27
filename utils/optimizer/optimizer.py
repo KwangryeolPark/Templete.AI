@@ -169,7 +169,7 @@ class LitOptimizer(object):
             )
             
         elif self.cfg.name == 'adafactor':
-            from .adafactor import Adafactor
+            from .adafactor.adafactor import Adafactor
             self.optimizer = Adafactor(
                 params=params,
                 lr=self.cfg.lr,
@@ -183,7 +183,7 @@ class LitOptimizer(object):
                 warmup_init=self.cfg.warmup_init,
             )
         elif self.cfg.name == 'sm3':
-            from .sm3 import SM3
+            from .sm3.sm3 import SM3
             self.optimizer = SM3(
                 params=params,
                 lr=self.cfg.lr,
@@ -213,7 +213,17 @@ class LitOptimizer(object):
                 rectify=self.cfg.rectify,
                 degenerated_to_sgd=self.cfg.degenerated_to_sgd,
                 print_change_log=self.cfg.print_change_log,
-            )                
+            )      
+        elif self.cfg.name == 'shampoo':
+            from .shampoo.shampoo import Shampoo
+            self.optimizer = Shampoo(
+                params=params,
+                lr=self.cfg.lr,
+                momentum=self.cfg.momentum,
+                weight_decay=self.cfg.weight_decay,
+                eps=self.cfg.eps,
+                update_freq=self.cfg.update_freq,
+            )                   
         else:
             raise ValueError('Unknown optimizer: {}'.format(self.cfg.name))
 

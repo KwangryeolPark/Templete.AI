@@ -3,17 +3,11 @@ import os
 from transformers import GPT2Config, GPT2Model
 
 
-
-
-
-
 configureation = GPT2Config()
 model = GPT2Model(configureation)
 model_name = 'GPT-2'
 
-
-
-
+##############################################################################################################################################################################
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 DOC = os.path.join(DIR, 'docs', 'model_information', f'{model_name}.md')
