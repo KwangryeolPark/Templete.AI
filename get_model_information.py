@@ -18,6 +18,9 @@ model_name = 'GPT-2'
 DIR = os.path.dirname(os.path.abspath(__file__))
 DOC = os.path.join(DIR, 'docs', 'model_information', f'{model_name}.md')
 
+if not os.path.exists(os.path.join(DIR, 'docs', 'model_information')):
+    os.makedirs(os.path.join(DIR, 'docs', 'model_information'))
+
 file = '| Name | Shape | Form | \n| --- | --- | --- |\n'
 
 count = 0
