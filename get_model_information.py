@@ -16,7 +16,7 @@ model_name = 'GPT-2'
 
 
 DIR = os.path.dirname(os.path.abspath(__file__))
-DOC = os.path.join(DIR, 'docs', 'trainable_parameter_shapes', f'{model_name}.md')
+DOC = os.path.join(DIR, 'docs', 'model_information', f'{model_name}.md')
 
 file = '| Name | Shape | Form | \n| --- | --- | --- |\n'
 

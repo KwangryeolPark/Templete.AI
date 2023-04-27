@@ -12,3 +12,4 @@ logs/*
 .hydra/*
 
 test.py
+get_model_information.py
