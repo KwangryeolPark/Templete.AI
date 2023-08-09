@@ -8,6 +8,7 @@ log/*
 logs/*
 .hydra/*
 venv/*
+datasets/*
 
 test.py
 get_model_information.py
